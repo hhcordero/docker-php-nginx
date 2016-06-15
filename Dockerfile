@@ -1,5 +1,6 @@
-FROM alpine:latest
-MAINTAINER Tim de Pater <code@trafex.nl>
+FROM alpine:3.4
+
+MAINTAINER Hector Cordero <hhcordero@gmail.com>
 
 # Install packages
 RUN apk --update add php7-fpm nginx supervisor --repository http://nl.alpinelinux.org/alpine/edge/testing/
@@ -8,8 +9,8 @@ RUN apk --update add php7-fpm nginx supervisor --repository http://nl.alpinelinu
 COPY config/nginx.conf /etc/nginx/nginx.conf
 
 # Configure PHP-FPM
-COPY config/fpm-pool.conf /etc/php7/php-fpm.d/zzz_custom.conf
-COPY config/php.ini /etc/php7/conf.d/zzz_custom.ini
+COPY config/fpm-pool.conf /etc/php7/php-fpm.d/fpm-pool_custom.conf
+COPY config/php.ini /etc/php7/conf.d/php_custom.ini
 
 # Configure supervisord
 COPY config/supervisord.conf /etc/supervisor/conf.d/supervisord.conf
